@@ -53,9 +53,11 @@ module.exports = {
         "./src/**/*.jsx",
       ],
       formatter: "table",
-      //failOnError: false,
     }),
 
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/,
+    }),
   ],
 };

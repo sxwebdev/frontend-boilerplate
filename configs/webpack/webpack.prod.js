@@ -2,10 +2,12 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const { merge } = require("webpack-merge");
-const common = require("./webpack.common.js");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 
+const common = require("./webpack.common.js");
 const { paths } = require(".")(__dirname);
 
 module.exports = merge(common, {
@@ -53,6 +55,17 @@ module.exports = merge(common, {
       chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
     }),
 
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+      exclude: [/\.map$/, /asset-manifest\.json$/],
+      navigateFallback: paths.public + "/index.html",
+      navigateFallbackDenylist: [
+        new RegExp("^/_"),
+        new RegExp("/[^/]+\\.[^/]+$"),
+      ],
+    }),
+
     new CopyPlugin({
       patterns: [
         {
@@ -66,6 +79,11 @@ module.exports = merge(common, {
       options: {
         concurrency: 100,
       },
+    }),
+
+    new WebpackManifestPlugin({
+      fileName: "asset-manifest.json",
+      publicPath: paths.public,
     }),
   ],
   optimization: {

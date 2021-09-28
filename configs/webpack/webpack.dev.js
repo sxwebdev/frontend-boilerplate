@@ -12,11 +12,12 @@ module.exports = merge(common, {
 
   devServer: {
     historyApiFallback: true,
-    contentBase: paths.public,
+    static: {
+      directory: paths.public,
+    },
     open: true,
     compress: true,
     hot: true,
-    watchContentBase: true,
     port: process.env.FRONT_PORT_MAIN,
   },
 

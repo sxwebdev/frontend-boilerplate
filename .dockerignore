@@ -2,7 +2,10 @@ node_modules
 .dockerignore
 Dockerfile
 Dockerfile.prod
+Dockerfile.dev
 README.md
 .env*
 .git
 .gitignore
+docker-compose.yml
+*.tsbuildinfo

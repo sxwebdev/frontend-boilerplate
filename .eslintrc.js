@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 module.exports = {
   root: true,
   ignorePatterns: ["dist", "node_modules"],
@@ -90,13 +91,15 @@ module.exports = {
     "no-new-object": "error",
     "no-new-wrappers": "error",
     "no-nested-ternary": "error",
-    // "no-console": [
-    //   "error",
-    //   {
-    //     allow: ["error"],
-    //   },
-    // ],
-    "no-console": ["off"],
+    "no-console":
+      process.env.NODE_ENV === "production"
+        ? [
+            "error",
+            {
+              allow: ["error"],
+            },
+          ]
+        : "off",
     "no-template-curly-in-string": "error",
     "no-self-compare": "error",
     "func-names": ["error", "as-needed"],
@@ -109,6 +112,7 @@ module.exports = {
     "react/display-name": "off",
     "unicorn/prevent-abbreviations": "off",
     "unicorn/no-null": "off",
+    "unicorn/no-useless-undefined": "off",
     "unicorn/prefer-module": "off",
   },
 };
