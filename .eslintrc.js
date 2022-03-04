@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/prefer-module */
 module.exports = {
   root: true,
-  ignorePatterns: ["dist", "node_modules"],
+  ignorePatterns: ["dist", "node_modules", "src/api/protos/"],
   env: {
     browser: true,
     node: true,
@@ -91,17 +91,15 @@ module.exports = {
     "no-new-object": "error",
     "no-new-wrappers": "error",
     "no-nested-ternary": "error",
-    "no-console":
-      process.env.NODE_ENV === "production"
-        ? [
-            "error",
-            {
-              allow: ["error"],
-            },
-          ]
-        : "off",
+    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
+    "no-unused-vars": process.env.NODE_ENV === "production" ? "error" : "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { varsIgnorePattern: "^_", argsIgnorePattern: "^_" },
+    ],
     "no-template-curly-in-string": "error",
     "no-self-compare": "error",
+    "no-empty": ["error", { allowEmptyCatch: true }],
     "func-names": ["error", "as-needed"],
     //semi: [2, "never"],
     "import/no-extraneous-dependencies": ["off", { devDependencies: false }],
@@ -114,5 +112,7 @@ module.exports = {
     "unicorn/no-null": "off",
     "unicorn/no-useless-undefined": "off",
     "unicorn/prefer-module": "off",
+    "unicorn/no-abusive-eslint-disable": "off",
+    "unicorn/consistent-function-scoping": "off",
   },
 };

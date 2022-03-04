@@ -8,8 +8,6 @@ module.exports = {
   singleQuote: false,
   jsxSingleQuote: false,
   bracketSpacing: true,
-  jsxBracketSameLine: false,
   proseWrap: "preserve",
   endOfLine: "auto",
-  spaceBeforeFunctionParen: true,
 };

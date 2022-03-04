@@ -1,6 +1,9 @@
+/* eslint-disable unicorn/prefer-module */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require("fs");
 const path = require("path");
+const dotenv = require("dotenv");
+const dotenvExpand = require("dotenv-expand");
 
 const dotEnvironmentPath = path.resolve(__dirname, "../../.env");
 
@@ -17,6 +20,9 @@ if (!NODE_ENV) {
 
 const dotenvFiles = [
   `${dotEnvironmentPath}.${NODE_ENV}.local`,
+  // Don't include `.env.local` for `test` environment
+  // since normally you expect tests to produce the same
+  // results for everyone
   NODE_ENV !== "test" && `${dotEnvironmentPath}.local`,
   `${dotEnvironmentPath}.${NODE_ENV}`,
   dotEnvironmentPath,
@@ -24,8 +30,8 @@ const dotenvFiles = [
 
 for (const dotenvFile of dotenvFiles) {
   if (fs.existsSync(dotenvFile)) {
-    require("dotenv-expand")(
-      require("dotenv").config({
+    dotenvExpand.expand(
+      dotenv.config({
         path: dotenvFile,
       })
     );

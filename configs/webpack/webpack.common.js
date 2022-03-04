@@ -45,14 +45,13 @@ module.exports = {
 
     new ESLintPlugin({
       extensions: moduleExtensions,
-      exclude: ["node_modules"],
+      exclude: ["dist", "build", "node_modules"],
       files: [
         "./src/**/*.ts",
         "./src/**/*.tsx",
         "./src/**/*.js",
         "./src/**/*.jsx",
       ],
-      formatter: "table",
     }),
 
     new webpack.IgnorePlugin({

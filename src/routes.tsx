@@ -1,7 +1,7 @@
 import React from "react";
-import { PartialRouteObject } from "react-router";
+import { RouteObject } from "react-router";
 
-type Route = PartialRouteObject & {
+type Route = RouteObject & {
   title?: string;
   end?: boolean;
   to?: string;

@@ -18,7 +18,7 @@
     "baseUrl": "./src",
     "outDir": "./dist",
     "declaration": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noUnusedParameters": true,
     "incremental": true,
     "sourceMap": false,
@@ -29,6 +29,12 @@
     "experimentalDecorators": true,
     "useDefineForClassFields": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.d.ts"
+  ],
   "exclude": ["node_modules", "build", "dist"]
 }
