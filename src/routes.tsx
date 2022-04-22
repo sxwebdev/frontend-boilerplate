@@ -1,17 +1,8 @@
 import React from "react";
-import { RouteObject } from "react-router";
-
-type Route = RouteObject & {
-  title?: string;
-  end?: boolean;
-  to?: string;
-  replace?: boolean;
-  hide_in_menu?: boolean;
-};
+import { Page, Route } from "@tkcrm/ui";
 
 const Home = React.lazy(() => import("./components/Home"));
-const Page = React.lazy(() => import("./components/Page"));
-const NotFound = React.lazy(() => import("./components/NotFound"));
+const InternalPage = React.lazy(() => import("./components/Page"));
 
 export const routes: Route[] = [
   {
@@ -23,11 +14,18 @@ export const routes: Route[] = [
   {
     path: "/page",
     title: "page",
-    element: <Page />,
+    element: <InternalPage />,
   },
   {
     path: "*",
     title: "not_found",
-    element: <NotFound />,
+    element: (
+      <Page.Error
+        code={404}
+        title="Page not found"
+        description="Please check the URL in the address bar and try again."
+        homeText="Home page"
+      />
+    ),
   },
 ];
