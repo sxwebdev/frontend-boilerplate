@@ -1,13 +1,17 @@
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
+import { ErrorBoundary } from "@tkcrm/ui";
 
-import App from "./components/App";
+import App from "@/components/App";
 
-import "./assets/scss/style.scss";
+import "@/assets/css/style.css";
 
-ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
-  document.querySelector("#root")
-);
+const rootElement = document.querySelector("#root");
+rootElement &&
+  createRoot(rootElement).render(
+    <ErrorBoundary>
+      <Router>
+        <App />
+      </Router>
+    </ErrorBoundary>
+  );
